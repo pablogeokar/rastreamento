@@ -1,3 +1,8 @@
+# Serviços da api do google que precisam estar ativos:
+
+Places API
+Directions API
+
 # Principais Comandos
 
 ## Criar Modulo
