@@ -11,19 +11,19 @@
         "noUnusedImports": "error"
       },
       "style": {
-        "useImportType": "off"
+        "useImportType": "off",
+        "useNodejsImportProtocol": "off"
       }
     }
   },
   "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    },
     "formatter": {
       "enabled": true,
       "quoteStyle": "double",
-      "jsxQuoteStyle": "double",
-      "semicolons": "always",
-      "arrowParentheses": "always",
-      "indentStyle": "space",
-      "indentWidth": 2
+      "jsxQuoteStyle": "double"
     }
   }
 }
