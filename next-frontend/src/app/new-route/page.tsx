@@ -1,3 +1,5 @@
+import { NewRouteForm } from "./NewRouteForm";
+
 export async function createRouteAction(formData: FormData) {
   "use server";
   const { sourceId, destinationId } = Object.fromEntries(formData);
@@ -162,7 +164,7 @@ export async function NewRoutePage({
                 {directionsData.routes[0].legs[0].duration.text}
               </li>
             </ul>
-            <form action={createRouteAction}>
+            <NewRouteForm>
               {placeSourceId && (
                 <input
                   type="hidden"
@@ -183,7 +185,7 @@ export async function NewRoutePage({
               >
                 Adicionar rota
               </button>
-            </form>
+            </NewRouteForm>
           </div>
         )}
       </div>
