@@ -9,17 +9,6 @@ export type MapNewRoutesProp = {
 };
 
 export default function MapNewRoute(props: MapNewRoutesProp) {
-  // const loader = new Loader({
-  //   apiKey: "",
-  //   libraries: ["routes", "geometry", "marker"],
-  // });
-  // const [, , , position] = await Promise.all([
-  //   loader.importLibrary("routes"),
-  //   loader.importLibrary("geometry"),
-  //   loader.importLibrary("marker"),
-  //   getCurrentPosition({ enabledHighAccuracy: true }),
-  // ]);
-
   const { directionsData } = props;
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const map = useMap(mapContainerRef);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { sample, shuffle } from "lodash";
 import type { DirectionsResponseData } from "@googlemaps/google-maps-services-js";
 
@@ -9,7 +10,8 @@ export class Map {
   constructor(element: HTMLElement, options: google.maps.MapOptions) {
     this.map = new google.maps.Map(element, {
       ...options,
-      /*styles: [
+      /*
+      styles: [
         { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
         { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
         { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
@@ -97,7 +99,7 @@ export class Map {
     startMarkerOptions: google.maps.marker.AdvancedMarkerElementOptions;
     endMarkerOptions: google.maps.marker.AdvancedMarkerElementOptions;
     carMarkerOptions: google.maps.marker.AdvancedMarkerElementOptions;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     directionsResponseData?: DirectionsResponseData & { request: any };
   }) {
     if (routeOptions.routeId in this.routes) {
@@ -133,7 +135,8 @@ export class Map {
       google.maps.marker.AdvancedMarkerElementOptions,
       "icon"
     >;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     directionsResponseData?: DirectionsResponseData & { request: any };
   }) {
     const color = sample(shuffle(colors)) as string;
@@ -158,9 +161,12 @@ export class Map {
   private fitBounds() {
     const bounds = new google.maps.LatLngBounds();
 
+    // biome-ignore lint/complexity/noForEach: <explanation>
     Object.keys(this.routes).forEach((id: string) => {
       const route = this.routes[id];
+      // biome-ignore lint/style/noNonNullAssertion: <explanation>
       bounds.extend(route.startMarker.position!);
+      // biome-ignore lint/style/noNonNullAssertion: <explanation>
       bounds.extend(route.endMarker.position!);
     });
 
@@ -184,6 +190,7 @@ export class Map {
   }
 
   removeAllRoutes() {
+    // biome-ignore lint/complexity/noForEach: <explanation>
     Object.keys(this.routes).forEach((id) => this.removeRoute(id));
   }
 
@@ -234,7 +241,7 @@ export class MapRoute {
   }
 
   async calculateRoute(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     directionsResponseData?: DirectionsResponseData & { request: any }
   ) {
     if (directionsResponseData) {
@@ -340,7 +347,7 @@ const colors = [
 ];
 
 function convertDirectionsResponseToDirectionsResult(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   directionsResponse: DirectionsResponseData & { request: any }
 ): google.maps.DirectionsResult {
   const copy = { ...directionsResponse };

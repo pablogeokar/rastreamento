@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
+import { revalidateTag } from "next/cache";
+
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export async function createRouteAction(state: any, formData: FormData) {
   "use server";
@@ -42,6 +44,8 @@ export async function createRouteAction(state: any, formData: FormData) {
     console.error(await response.text());
     return { error: "Failed to create route" };
   }
+
+  revalidateTag("routes");
 
   return { success: true };
 }
