@@ -23,7 +23,14 @@ export class RoutesDriverGateway {
 
       await sleep(2000);
       const { lat: lat2, lng: lng2 } = step.end_location;
+
       client.emit(`server:new-points/${route_id}:list`, {
+        route_id,
+        lat: lat2,
+        lng: lng2,
+      });
+
+      client.broadcast.emit("server:new-points:list", {
         route_id,
         lat: lat2,
         lng: lng2,
